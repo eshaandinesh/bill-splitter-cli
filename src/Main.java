@@ -6,15 +6,7 @@ void main() {
     Map<String, Long> totalPaid = new HashMap<>();
 
     for(int i = 0; i < payers.size(); i++){
-        String currkey = payers.get(i);
-        Long currval = amounts.get(i);
-        if(totalPaid.containsKey(currkey)){
-            currval += totalPaid.get(currkey);
-            totalPaid.put(currkey, currval);
-        }
-        else{
-            totalPaid.put(currkey, currval);
-        }
+        totalPaid.merge(payers.get(i), amounts.get(i), Long::sum);
     }
 
     totalPaid.forEach((key, value) -> System.out.println(key + " -> " + value));
