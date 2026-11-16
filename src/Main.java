@@ -1,13 +1,24 @@
 //TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
 // click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
 void main() {
-    //TIP Press <shortcut actionId="ShowIntentionActions"/> with your caret at the highlighted text
-    // to see how IntelliJ IDEA suggests fixing it.
-    IO.println(String.format("Hello and welcome!"));
+    List<String> payers = new ArrayList<>(Arrays.asList("A", "B", "C", "D", "E", "B"));
+    List<Long> amounts = new ArrayList<>(Arrays.asList(1000L, 3000L, 0L, 2000L, 5000L, 4300L));
+    Map<String, Long> totalPaid = new HashMap<>();
 
-    for (int i = 1; i <= 5; i++) {
-        //TIP Press <shortcut actionId="Debug"/> to start debugging your code. We have set one <icon src="AllIcons.Debugger.Db_set_breakpoint"/> breakpoint
-        // for you, but you can always add more by pressing <shortcut actionId="ToggleLineBreakpoint"/>.
-        IO.println("i = " + i);
+    for(int i = 0; i < payers.size(); i++){
+        String currkey = payers.get(i);
+        Long currval = amounts.get(i);
+        if(totalPaid.containsKey(currkey)){
+            currval += totalPaid.get(currkey);
+            totalPaid.put(currkey, currval);
+        }
+        else{
+            totalPaid.put(currkey, currval);
+        }
     }
+
+    totalPaid.forEach((key, value) -> System.out.println(key + " -> " + value));
+
+    Set<String> people = new HashSet<>(payers);
+    System.out.println(people);
 }
