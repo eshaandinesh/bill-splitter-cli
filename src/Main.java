@@ -1,16 +1,28 @@
 //TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
 // click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
 void main() {
-    List<String> payers = new ArrayList<>(Arrays.asList("A", "B", "C", "D", "E", "B"));
-    List<Long> amounts = new ArrayList<>(Arrays.asList(1000L, 3000L, 0L, 2000L, 5000L, 4300L));
+    enum Category {FOOD, TRAVEL, RENT, OTHER};
+    record Expense(String payer, Long amount, String description, Category category){}
+    List<Expense> expenses = new ArrayList<>();
+    expenses.add(new Expense("A", 1000L, "d1", Category.FOOD));
+    expenses.add(new Expense("B", 3000L, "d2", Category.TRAVEL));
+    expenses.add(new Expense("C", 0L, "d3", Category.RENT));
+    expenses.add(new Expense("D", 2000L, "d4", Category.OTHER));
+    expenses.add(new Expense("E", 5000L, "d5", Category.FOOD));
+    expenses.add(new Expense("B", 4300L, "d6", Category.OTHER));
+    expenses.add(new Expense("B", 4300L, "d6", Category.OTHER));
+
     Map<String, Long> totalPaid = new HashMap<>();
+    Set<String> people = new HashSet<>();
 
-    for(int i = 0; i < payers.size(); i++){
-        totalPaid.merge(payers.get(i), amounts.get(i), Long::sum);
+    for (Expense expense : expenses) {
+        totalPaid.merge(expense.payer(), expense.amount(), Long::sum);
+        people.add(expense.payer());
     }
-
+    System.out.println(expenses.get(0));
     totalPaid.forEach((key, value) -> System.out.println(key + " -> " + value));
 
-    Set<String> people = new HashSet<>(payers);
     System.out.println(people);
+
+    System.out.println(expenses.get(5).equals(expenses.get(6)));
 }

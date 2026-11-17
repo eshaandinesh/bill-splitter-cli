@@ -66,3 +66,51 @@ using iterator, same way as HashMap but no need to make Map.Entry, just directly
 
 can use TreeSet, its naturally order the elements but is slower  
 can use LinkedHashSet, maintains insertion order, faster than TreeSet, not as fast as HashSet
+
+# Day 3:
+## static: 
+static variable is something shared among all instances of the class, used to store common things for all the objects
+
+static blocks are executed once when the class is first loaded
+
+static methods belong to the class, not to any object, can be called outside the class directly using method name, no need of object. it can only access static data from class
+
+## final:
+final variable cannot be changed after it is initialized. if it is part of a class then it needs to be initialized in the constructor 
+final class cannot be inherited  
+
+final method cannot be overwritten by subclasses
+
+## record:
+public record RecordName(datatye varname, ....){}  
+used to hold elements, no changes made to them, the variables will be private and final.  
+they have public getter methods, used by calling function which has same name as the variable name  
+also overrides, toString(), hashCode(), equals() methods
+
+printing the record name shows the contents in readable way(toString)
+
+equals checks if the components of the objects are the same then its equal 
+
+you can create instance methods and statics methods for the record within the {}
+
+## abstract classes:
+cant be instantiated, used on parent classes where it doesnt make sense for them to have objects but they can be inherited and those classes can have objects like animal and dog, cat, etc
+
+abstract methods can also be declared in the abstract class for things the subclasses should be able to do but they dont have any {} it just has ;  the actual implementation is done in the subclass 
+
+abstract classes can also have normal methods
+
+## interface
+every method in an interface is already abstract  
+every field in it is static and final 
+used when you have different unrelated classes which you want to do something commmon 
+instead of using extends it uses implements  
+extend only works on one class while you can implement as many interfaces as you want (can also use both extend and implements)
+
+## enum
+type of class, its fields are public, static and final
+used when there are known values that arent going to change which need to be used in different places so that there are no mistakes are made  
+enum enumName {vals}  
+each val must be in caps  
+to use: enumName var = enumName.val1;  
+loop through using enumNames.values()
