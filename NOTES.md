@@ -114,3 +114,35 @@ enum enumName {vals}
 each val must be in caps  
 to use: enumName var = enumName.val1;  
 loop through using enumNames.values()
+
+# Day 4
+
+## generics
+put <T> in the class name and then we can just use T as the datatype in variables and methods  
+when instantiating the class you put <wrapper class of datatype> so that the generic class knows what datatype it's handling  
+bounded generic: in the T in the class name you can also extend other classes so that it can only be objects of the parent class as the datatype and the variables with T datatype can use methods of the parent class. this also works with interfaces but uses extends keyword only instead of implements  
+to inherit multiple classes/ interfaces, first put the class name and then use & for every interface inherited(can only use one class cause java)  
+
+also works directly in methods, the parameter will have T var and the definition will have <T>
+for multiple generics use <T, V>  
+
+wildcard: if there is a method which takes in a list but the datatype instead known then <?> is used in the parameter and it can accept any type then  
+also can extend classes, interfaces
+
+## Exception Handling
+try {} catch( exception e) {}  
+Exception can be used to catch any exception  
+can also stack multiple catches to catch different exceptions  
+can also use | to put multiple exceptions in same catch
+
+finally block executes after try catch, executes no matter what, meaning that even if there is a return statement the finally block will still run  
+a return statement in the finally block overrides any other return statement in try or catch
+
+subclasses of runtimeexception are unchecked exceptions and java doesnt directly handle them, the program ends if the exception occurs. all other exceptions are checked exceptions, throw a compile time error so that you need to have code to handle it
+
+## Custom Exceptions:  
+make a new exception class that extends Exception and in the try block throw new exceptionname();   
+if a method has the throw exception but doesnt handle it with try catch then the method declaration needs to have: throws exceptionname   
+
+if you want to pass a parameter with the exception then in the new exception class a constructor needs to be created to handle that by just putting super(parameter);  
+This parameter can also be a Throwable instead of just a String. this is used when the custom exception is caused by some other exception so in the throwable you can pass in the exception which caused it.
